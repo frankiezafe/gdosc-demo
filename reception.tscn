@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://OSCreceiver.gd" type="Script" id=1]
 [ext_resource path="res://polymorph-logo.tscn" type="PackedScene" id=2]
 [ext_resource path="res://polymorph-logo.gd" type="Script" id=3]
-[ext_resource path="res://debugger.gd" type="Script" id=4]
+[ext_resource path="res://emiter.gd" type="Script" id=4]
+[ext_resource path="res://OSCsender.gd" type="Script" id=5]
+[ext_resource path="res://debugger.gd" type="Script" id=6]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -195,13 +197,13 @@ shadow_contact = 0.0
 shadow_reverse_cull_face = false
 editor_only = false
 directional_shadow_mode = 1
-directional_shadow_split_1 = 0.1
-directional_shadow_split_2 = 0.2
-directional_shadow_split_3 = 0.5
+directional_shadow_split_1 = 0.467
+directional_shadow_split_2 = 1.0
+directional_shadow_split_3 = 0.832
 directional_shadow_blend_splits = true
 directional_shadow_normal_bias = 0.8
 directional_shadow_bias_split_scale = 0.25
-directional_shadow_depth_range = 0
+directional_shadow_depth_range = 1
 directional_shadow_max_distance = 200.0
 _sections_unfolded = [ "Directional Shadow", "Editor", "Light", "Shadow" ]
 
@@ -225,6 +227,21 @@ _sections_unfolded = [ "material" ]
 [node name="polymorph-logo" parent="objs" index="3" instance=ExtResource( 2 )]
 
 script = ExtResource( 3 )
+
+[node name="emitter" parent="objs" index="4" instance=ExtResource( 2 )]
+
+transform = Transform( 1.85, 0, 0, 0, 1.85, 0, 0, 0, 1.85, 0, 0, 0 )
+script = ExtResource( 4 )
+
+[node name="OSCsender" type="OSCsender" parent="objs/emitter" index="2"]
+
+ip = "127.0.0.1"
+port = 24000
+buffersize = 1024
+autostart = true
+autoclear = true
+script = ExtResource( 5 )
+_sections_unfolded = [ "Network" ]
 
 [node name="world" type="WorldEnvironment" parent="." index="2"]
 
@@ -265,7 +282,7 @@ caret_block_mode = false
 caret_blink = false
 caret_blink_speed = 0.65
 caret_moving_by_right_click = true
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 _sections_unfolded = [ "Material", "Rect", "Visibility", "custom_colors" ]
 
 
