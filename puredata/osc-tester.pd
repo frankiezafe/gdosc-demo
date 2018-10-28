@@ -1,4 +1,4 @@
-#N canvas 249 111 1060 457 10;
+#N canvas 13 658 1060 457 10;
 #X obj 132 35 bng 50 250 50 0 empty empty start 53 7 0 10 -4034 -1
 -1;
 #X obj 64 35 loadbang;
@@ -16,24 +16,24 @@
 #X msg 213 164 connect 127.0.0.1 23000;
 #X msg 281 137 connect 127.0.0.1 23001;
 #X msg 38 244 send /pd \$1 \$1;
-#X obj 560 110 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -4034
--1 -1 5900 1;
+#X obj 560 110 vsl 15 128 -3 3 0 0 empty empty empty 0 -9 0 10 -4034
+-1 -1 6900 1;
 #X obj 554 35 loadbang;
 #X msg 554 57 0;
 #X obj 540 361 pack \$1 \$2 \$3;
 #X obj 539 405 s oscmsg;
 #X msg 540 383 send /pm/pos \$1 \$2 \$3;
-#X obj 580 110 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -4032
--1 -1 6350 1;
+#X obj 580 110 vsl 15 128 -3 3 0 0 empty empty empty 0 -9 0 10 -4032
+-1 -1 11400 1;
 #X obj 540 271 t f b b;
 #X obj 600 271 t b f b;
 #X obj 660 271 t b b f;
-#X obj 540 110 vsl 15 128 -1 1 0 0 empty empty empty 0 -9 0 10 -258113
--1 -1 3300 1;
+#X obj 540 110 vsl 15 128 -3 3 0 0 empty empty empty 0 -9 0 10 -258113
+-1 -1 1800 1;
 #X obj 540 322 f;
 #X obj 600 322 f;
 #X obj 660 322 f;
-#X obj 815 36 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 815 36 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 815 168 f;
 #X obj 815 241 cos;
@@ -51,7 +51,7 @@
 #X obj 38 200 metro 5;
 #X obj 844 168 + 0.01;
 #X obj 898 81 vsl 15 100 0 0.5 0 0 empty empty speed 0 -9 0 10 -4032
--1 -1 4300 1;
+-1 -1 0 1;
 #X connect 0 0 5 0;
 #X connect 1 0 5 0;
 #X connect 2 0 3 0;

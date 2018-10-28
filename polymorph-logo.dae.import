@@ -7,10 +7,7 @@ path="res://.import/polymorph-logo.dae-f9f6a8601374476ec9574cfd82d076ad.scn"
 [deps]
 
 source_file="res://polymorph-logo.dae"
-source_md5="892d27777368028269030f595a7a1d58"
-
 dest_files=[ "res://.import/polymorph-logo.dae-f9f6a8601374476ec9574cfd82d076ad.scn" ]
-dest_md5="dc67a5b2dd5128e935c2a802eeab4839"
 
 [params]
 

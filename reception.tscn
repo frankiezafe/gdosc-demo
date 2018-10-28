@@ -9,6 +9,8 @@
 
 [sub_resource type="PlaneMesh" id=1]
 
+custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
+flip_faces = false
 size = Vector2( 2, 2 )
 subdivide_width = 0
 subdivide_depth = 0
@@ -24,6 +26,9 @@ flags_use_point_size = false
 flags_world_triplanar = false
 flags_fixed_size = false
 flags_albedo_tex_force_srgb = false
+flags_do_not_receive_shadows = false
+flags_disable_ambient_light = false
+flags_ensure_correct_normals = false
 vertex_color_use_as_albedo = false
 vertex_color_is_srgb = false
 params_diffuse_mode = 0
@@ -34,6 +39,7 @@ params_depth_draw_mode = 0
 params_line_width = 1.0
 params_point_size = 1.0
 params_billboard_mode = 0
+params_billboard_keep_scale = false
 params_grow = false
 params_use_alpha_scissor = false
 albedo_color = Color( 1, 1, 1, 1 )
@@ -62,7 +68,7 @@ uv2_offset = Vector3( 0, 0, 0 )
 uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
-distance_fade_enable = false
+distance_fade_mode = 0
 _sections_unfolded = [ "Flags" ]
 
 [sub_resource type="Environment" id=3]
@@ -109,6 +115,7 @@ ssao_radius2 = 0.0
 ssao_intensity2 = 1.0
 ssao_bias = 0.01
 ssao_light_affect = 0.0
+ssao_ao_channel_affect = 0.0
 ssao_color = Color( 0, 0, 0, 1 )
 ssao_quality = 0
 ssao_blur = 3
@@ -150,10 +157,9 @@ render_priority = 0
 blend_mode = 2
 light_mode = 1
 
-[node name="root" type="Spatial" index="0"]
+[node name="root" type="Spatial"]
 
-[node name="OSCreceiver" type="OSCreceiver" parent="." index="0"]
-
+[node name="OSCreceiver" type="OSCreceiver" parent="."]
 port = 23000
 max_queue = 10
 autostart = true
@@ -161,10 +167,9 @@ emit_signal = true
 script = ExtResource( 1 )
 _sections_unfolded = [ "Network" ]
 
-[node name="objs" type="Spatial" parent="." index="1"]
+[node name="objs" type="Spatial" parent="."]
 
-[node name="Camera" type="Camera" parent="objs" index="0"]
-
+[node name="Camera" type="Camera" parent="objs"]
 transform = Transform( 1, 0, 0, 0, 0.934311, 0.356459, 0, -0.356459, 0.934311, 0, 2.92831, 6.57348 )
 keep_aspect = 1
 cull_mask = 1048575
@@ -179,8 +184,7 @@ size = 1.0
 near = 0.05
 far = 100.0
 
-[node name="dirlight" type="DirectionalLight" parent="objs" index="1"]
-
+[node name="dirlight" type="DirectionalLight" parent="objs"]
 transform = Transform( 0.535591, -0.63367, 0.558215, 0.438711, 0.773603, 0.457243, -0.721579, 0, 0.692332, 1.80086, 1.5056, 2.25169 )
 layers = 1
 light_color = Color( 1, 1, 1, 1 )
@@ -207,8 +211,7 @@ directional_shadow_depth_range = 1
 directional_shadow_max_distance = 200.0
 _sections_unfolded = [ "Directional Shadow", "Editor", "Light", "Shadow" ]
 
-[node name="ground" type="MeshInstance" parent="objs" index="2"]
-
+[node name="ground" type="MeshInstance" parent="objs"]
 transform = Transform( 4.01728, 0, 0, 0, 4.01728, 0, 0, 0, 4.01728, 0, -0.280762, 0 )
 layers = 1
 material_override = null
@@ -224,17 +227,14 @@ skeleton = NodePath("..")
 material/0 = SubResource( 2 )
 _sections_unfolded = [ "material" ]
 
-[node name="polymorph-logo" parent="objs" index="3" instance=ExtResource( 2 )]
-
+[node name="polymorph-logo" parent="objs" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 
-[node name="emitter" parent="objs" index="4" instance=ExtResource( 2 )]
-
+[node name="emitter" parent="objs" instance=ExtResource( 2 )]
 transform = Transform( 1.85, 0, 0, 0, 1.85, 0, 0, 0, 1.85, 0, 0, 0 )
 script = ExtResource( 4 )
 
-[node name="OSCsender" type="OSCsender" parent="objs/emitter" index="2"]
-
+[node name="OSCsender" type="OSCsender" parent="objs/emitter"]
 ip = "127.0.0.1"
 port = 24000
 buffersize = 1024
@@ -243,12 +243,10 @@ autoclear = true
 script = ExtResource( 5 )
 _sections_unfolded = [ "Network" ]
 
-[node name="world" type="WorldEnvironment" parent="." index="2"]
-
+[node name="world" type="WorldEnvironment" parent="."]
 environment = SubResource( 3 )
 
-[node name="debugger" type="TextEdit" parent="." index="3"]
-
+[node name="debugger" type="TextEdit" parent="."]
 material = SubResource( 4 )
 anchor_left = 0.0
 anchor_top = 0.0
@@ -271,18 +269,18 @@ readonly = true
 highlight_current_line = false
 syntax_highlighting = false
 show_line_numbers = false
+breakpoint_gutter = false
 highlight_all_occurrences = false
 override_selected_font_color = false
 context_menu_enabled = true
 smooth_scrolling = false
 v_scroll_speed = 80.0
 hiding_enabled = 0
-wrap_lines = false
+wrap_enabled = false
 caret_block_mode = false
 caret_blink = false
 caret_blink_speed = 0.65
 caret_moving_by_right_click = true
 script = ExtResource( 6 )
 _sections_unfolded = [ "Material", "Rect", "Visibility", "custom_colors" ]
-
 
